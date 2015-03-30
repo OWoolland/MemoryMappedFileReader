@@ -1,0 +1,30 @@
+#include "AnalysisTool.hh"
+
+#include <fstream>   // reading file
+#include <iostream>  // printing
+#include <pthread.h> // multithreading
+#include <unistd.h>  // delay (usleep)
+
+using namespace std;
+
+AnalysisTool::AnalysisTool(){
+}
+
+AnalysisTool::~AnalysisTool() {
+}
+
+void AnalysisTool::PrintTool() {
+  cout << "No analysis tool currently selected" << endl;
+}
+
+void AnalysisTool::ProcessLine(string ln) {
+  return;
+}
+
+void AnalysisTool::StackLine() {
+
+}
+
+void AnalysisTool::ProcessStack() {
+
+}

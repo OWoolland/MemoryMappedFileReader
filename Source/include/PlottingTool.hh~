@@ -1,0 +1,27 @@
+#ifndef PlottingTool_h
+#define PlottingTool_h 1
+
+#include <string>
+
+using namespace std;
+
+class PlottingTool {
+  public:
+    PlottingTool();
+    virtual ~PlottingTool();
+
+    virtual void setTitle(string title);
+    virtual void setXLabel(string xLabel);
+    virtual void setYLabel(string yLabel);
+
+    virtual void setFile(string file);
+    virtual void setFileColumns(string xCol, string yCol);
+
+    virtual void setPlotParameters(string params);
+  
+    virtual void plot();
+  
+  private:
+};
+
+#endif

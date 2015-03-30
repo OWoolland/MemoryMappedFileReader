@@ -1,0 +1,21 @@
+#ifndef SurfaceEnergy_h
+#define SurfaceEnergy_h 1
+
+#include "AnalysisTool.hh"
+
+using namespace std;
+
+class SurfaceEnergy : public AnalysisTool {
+  public:
+    SurfaceEnergy();
+    ~SurfaceEnergy();
+
+    virtual void PrintTool();
+    virtual void ProcessLine(string ln);
+  
+  //virtual void StackLine(int id_stack, float energy_stack);
+  //virtual void ProcessStack();
+  private:
+};
+
+#endif

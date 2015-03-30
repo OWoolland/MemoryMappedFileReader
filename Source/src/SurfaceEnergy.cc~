@@ -1,0 +1,130 @@
+#include "SurfaceEnergy.hh"
+#include "AnalysisTool.hh"
+#include "StackingTool.hh"
+
+#include <fstream>   // reading file
+#include <iostream>  // printing
+#include <pthread.h> // multithreading
+#include <unistd.h>  // delay (usleep)
+#include <sstream>   // stringsream
+#include <vector>    // stacking
+
+using namespace std;
+
+SurfaceEnergy::SurfaceEnergy() : AnalysisTool() {
+}
+
+SurfaceEnergy::~SurfaceEnergy() {
+  //  cout << "THIS HAPPENS" << endl;
+  //ProcessStack();
+}
+
+void SurfaceEnergy::PrintTool() {
+  cout << "The analysis tool in use is SurfaceEnergy" << endl;
+}
+
+void SurfaceEnergy::ProcessLine(string ln, StackingTool* stack) {
+  int id = 0;
+  float x,y,z,edep,energy,particle_time = 0.;
+  int particle,process,creation_process = 0;
+  float momentum_x,momentum_y,momentum_z = 0.;
+  int volume,surface,auger = 0;
+
+  StackingTool* stackingTool = stack;
+  
+  // surface energy wants electrons at the surface
+  string line = ln;
+  stringstream line_ss(line); // create stringsteam pseudofile of line
+
+  int i = 1;
+  bool line_fail = false;
+  string value;
+
+  while (line_ss.good() && !line_fail)
+    {
+      // get comma delimited element of file line
+      getline(line_ss, value, ',');
+      
+      // use stringstream to hold values temporarily
+      stringstream value_ss(value);
+      switch(i)
+	{
+	case 1: value_ss >> id; break;
+	case 2: value_ss >> x; break;
+	case 3: value_ss >> y; break;
+	case 4: value_ss >> z; break;	    
+	case 5: value_ss >> edep; break;
+	case 6: value_ss >> energy; break;
+	case 7: value_ss >> particle_time; break;
+	case 8: value_ss >> particle; break;	   
+	case 9: value_ss >> process; break;
+	case 10: value_ss >> creation_process; break;
+	case 11: value_ss >> momentum_x; break;
+	case 12: value_ss >> momentum_y; break;
+	case 13: value_ss >> momentum_z; break;
+	case 14: value_ss >> volume; break;
+	case 15: value_ss >> surface; break;
+	case 16: value_ss >> auger; break;
+	default: 
+	  cout << "Error on line " << line <<endl;
+	  //id = x = y = z = edep = energy = particle_time = particle = process = creation_process = momentum_x = momentum_y = momentum_z = volume = surface = auger = 0;
+	  line_fail = true;
+	}
+      i++;
+    }
+  particle = 1; surface = 1;
+  cout << "Particle = " << particle << " Surface = " << surface << endl;
+  if (particle == 1 && surface == 1 ) {stackingTool->StackLine(id, energy);
+  }
+  return;
+}
+
+/*void SurfaceEnergy::StackLine(int id_stack, float energy_stack) {
+  int id = id_stack;
+  float energy = energy_stack;
+  
+  // construct row
+  vector<float> row;
+  row.push_back((float)id);
+  row.push_back(energy);
+
+  // stack row
+  pthread_mutex_lock(&stack_mutex);
+    stack.push_back(row);
+  pthread_mutex_unlock(&stack_mutex);
+
+  cout << "stacked" << endl;
+
+  // check if processing should happen
+  pthread_mutex_lock(&stack_mutex);
+    int stackSize = stack.size();
+    if(stackSize>=5) ProcessStack();
+  pthread_mutex_unlock(&stack_mutex);
+}
+
+void SurfaceEnergy::ProcessStack() {
+  // should have a seperate thread which deals with the stack
+  while (!stack.empty()) {
+    vector<float> row = stack.back();
+
+    int id_proc = (int)row[0];
+    float energy_proc = row[1];
+
+    cout << id_proc << " " << energy_proc << endl;
+    
+    stack.pop_back();
+
+    pthread_mutex_lock(&ofile_mutex);
+      ofile << id_proc << "," << energy_proc << endl;
+    pthread_mutex_unlock(&ofile_mutex);  
+  }
+  cout << "processed" << endl;
+  }*/
+
+
+
+/* Method suggestions:
+  return parameters to check
+  set up conditional statments in the reader
+  provide output formatting (based on switches?)
+ */

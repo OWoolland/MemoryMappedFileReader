@@ -1,0 +1,21 @@
+#ifndef AnalysisTool_h
+#define AnalysisTool_h 1
+
+#include <string>
+
+using namespace std;
+
+class AnalysisTool {
+  public:
+    AnalysisTool();
+    virtual ~AnalysisTool();
+
+    virtual void PrintTool();
+    virtual void ProcessLine(string ln);
+  
+    virtual void StackLine();
+    virtual void ProcessStack();
+  private:
+};
+
+#endif

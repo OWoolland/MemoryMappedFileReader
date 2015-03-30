@@ -1,0 +1,59 @@
+#include <iostream>  // printing
+
+#include "MultiThreadRead.hh"
+#include "SurfaceEnergy.hh"
+#include "PlottingTool.hh"
+#include "SurfaceEnergy.hh"
+#include "StackingTool.hh"
+
+#include <unistd.h>  // delay (usleep)
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+  if (argc < 2) {
+    cerr << "Usage: (NOT IMPLIMENTED)" << argv[0] << " <options> DATAFILE\n"
+	 << "Options:\n"
+	 << "\t-h,--help\t\tShow this help message\n"
+	 << "\t-c,--csv\t\tExport a csv file\n"
+	 << "\t-o,--output\t\tName the otput csv file"
+	 << endl;
+    return 0;
+  }
+  SurfaceEnergy* surfAnalyser = new SurfaceEnergy();
+  StackingTool* stackTool = new StackingTool;
+  MultiThreadRead* threadedReader = new MultiThreadRead(argv[1],surfAnalyser,stackTool);
+  
+  // need to make sure that accessing one method (e.g. stackLine) does not exclude another (processStack)
+
+  threadedReader->GetAnalysisTool()->PrintTool();
+  threadedReader->BeginThreads(2);
+  while (!threadedReader->GetRunningThreads()) usleep(1000); // await initialisation of the first thread
+  while (threadedReader->GetRunningThreads()) { // await completion of threads
+    if (stackTool->getProcessNow()) stackTool->ProcessStack();
+  }
+  stackTool->ProcessStack();
+
+  /*PlottingTool* plotter = new PlottingTool();
+  plotter->setTitle("Hello World");
+  plotter->setXLabel("X Axis");
+  plotter->setYLabel("Y Axis");
+
+  plotter->setFile("../../../surface_only_dataset.csv");
+  //plotter->setFile("SurfaceEnergy_output.csv");
+  //plotter->setFile(surfAnalyser->GetOutFileName());
+  
+  plotter->setPlotParameters("");
+  
+  plotter->plotXY(0,  // xCol
+		  6); // yCol
+
+  plotter->setPlotParameters("smooth freq with boxes notitle");
+
+  plotter->plotHist(15000, // nBins
+		    0,     // minValue
+		    15000, // maxValue
+		    6);    // file column*/
+}
+

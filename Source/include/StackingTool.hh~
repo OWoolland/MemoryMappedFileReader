@@ -1,0 +1,17 @@
+#ifndef StackingTool_h
+#define StackingTool_h 1
+#include <string>
+
+using namespace std;
+
+class StackingTool {
+  public:
+    StackingTool();
+    virtual ~StackingTool();
+
+    virtual void StackLine(int id_stack, float energy_stack);
+    virtual void ProcessStack();
+  private:
+};
+
+#endif

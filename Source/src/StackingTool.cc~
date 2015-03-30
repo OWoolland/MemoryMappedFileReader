@@ -1,0 +1,72 @@
+#include "StackingTool.hh"
+
+#include <fstream>   // reading file
+#include <iostream>  // printing
+#include <pthread.h> // multithreading
+#include <vector>    // stacking
+
+using namespace std;
+
+static vector<vector<float> > stack;
+pthread_mutex_t stack_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+static ofstream ofile;
+pthread_mutex_t ofile_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+StackingTool::StackingTool(){
+  ofile.open("SurfaceEnergy_output.csv");
+  cout << "hello" << endl;
+}
+
+StackingTool::~StackingTool() {
+  ofile.close();
+}
+
+void StackingTool::StackLine(int id_stack, float energy_stack) {
+  int id = id_stack;
+  float energy = energy_stack;
+  
+  // construct row
+  vector<float> row;
+  row.push_back((float)id);
+  row.push_back(energy);
+
+  // stack row
+  pthread_mutex_lock(&stack_mutex);
+    stack.push_back(row);
+  pthread_mutex_unlock(&stack_mutex);
+
+  cout << "stacked" << endl;
+}
+
+void StackingTool::ProcessStack() {
+  pthread_mutex_lock(&stack_mutex);
+    std::vector<vector<float> > stackProc(stack); // copy vector (freeing the mutex so other threads may work)
+    stack.clear();
+  pthread_mutex_unlock(&stack_mutex);
+
+  while (!stackProc.empty()) {
+    vector<float> row = stackProc.back();
+
+    int id_proc = (int)row[0];
+    float energy_proc = row[1];
+
+    //cout << id_proc << " " << energy_proc << endl;
+    
+    stackProc.pop_back();
+
+    pthread_mutex_lock(&ofile_mutex);
+      ofile << id_proc << "," << energy_proc << endl;
+    pthread_mutex_unlock(&ofile_mutex);  
+  }
+  cout << "processed" << endl;
+}
+
+bool StackingTool::getProcessNow() {
+  bool getProcessNow = false;
+  // returns true if the stack should be processed
+  pthread_mutex_lock(&stack_mutex);
+    if(stack.size()>=1000) getProcessNow = true;
+  pthread_mutex_unlock(&stack_mutex);
+  return getProcessNow;
+}
