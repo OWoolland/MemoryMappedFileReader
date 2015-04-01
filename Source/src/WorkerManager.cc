@@ -99,7 +99,7 @@ void *WorkerManager::threadAction(void *threadid) {
 	i++;
       }
     if(analyser->getInterest(particle, surface, creation_process, photoElectron)) {
-      string toWrite = analyser->processData(id,energy); // make one line
+      string toWrite = analyser->processData(id,energy); 
       if(writingTool->getWriteStackSize()>50000)
 	while(writingTool->getWriteStackSize()>2500)
 	  {usleep(10000);};      

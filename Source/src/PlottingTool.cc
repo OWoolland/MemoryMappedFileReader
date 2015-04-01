@@ -13,7 +13,6 @@ ofstream gnuplot_script;
 string scriptTitle, scriptXLabel, scriptYLabel, scriptFile;
 string scriptParams;
 
-
 PlottingTool::PlottingTool(){
 }
 
@@ -96,21 +95,3 @@ void PlottingTool::plotHist(int nBins, double minValue, double maxValue, int col
 
   system("gnuplot -p gnuplot_tmp");
 }
-
-/*n=15000 #number of intervals
-max=15000. #max value
-min=0. #min value
-width=(max-min)/n #interval width
-#function used to map a value to the intervals
-hist(x,width)=width*floor(x/width)+width/2.0
-
-set xrange [min:max]
-set yrange [0:]
-
-#to put an empty boundary around the data inside an autoscaled graph.
-#set xtics min,(max-min)/5,max
-set boxwidth width*0.9
-set tics out nomirror
-
-#count and plot
-plot "~/Share/Geant4-Codes/NanoparticleEOutput/Scripts/surface_only_dataset.csv" using (hist($6,width)):(1.0) smooth freq with boxes notitle*/

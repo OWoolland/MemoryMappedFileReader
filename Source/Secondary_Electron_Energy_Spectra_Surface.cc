@@ -46,11 +46,15 @@ int main(int argc, char* argv[])
   const char * fileName = "defaultFileIn.csv";
   const char * outFileName = "defaultFileOut.csv";
 
+  // Declare all possible analysis tools
+  
   AllPass* allPass = new AllPass();
   AnalysisTool* analysisTool = new AnalysisTool();
   SurfaceEnergy* surfaceEnergy = new SurfaceEnergy();
   SurfaceEnergyPhotoElectron* surfaceEnergyPhotoElectron = new SurfaceEnergyPhotoElectron();
   SurfaceEnergyAugerElectron* surfaceEnergyAugerElectron = new SurfaceEnergyAugerElectron();
+
+  // Select analysis tool based on command line switch
   
   int opt;
   while ((opt = getopt(argc, argv, "t:")) != -1) {
@@ -72,8 +76,10 @@ int main(int argc, char* argv[])
       abort();
     }
   }
+
+  // Parse file names from command line switch
+  
   if ((argc-optind)==2) {
-    //cout << "argv " << argv[optind] << " " << argv[optind+1] << endl;
     fileName = argv[optind];
     outFileName = argv[optind+1];
   } else {
@@ -113,21 +119,14 @@ int main(int argc, char* argv[])
     usleep(60000000);
   }
 
-  // did it dismount gracefully?
-  cout << "memMapReader->getFinished() = " << memMapReader->getFinished()
-       << " stackTool->getStackSize() = " << stackTool->getStackSize()
-       << " writeTool->getWriteStackSize() = " << writeTool->getWriteStackSize()
-       << endl;
-
   // Call plotting tool
+
   //PlottingTool* plotter = new PlottingTool();
   //  plotter->setTitle("10^7 Photons");
   //plotter->setXLabel("Energy (eV)");
   //plotter->setYLabel("Count");
 
-  //plotter->setFile("../../../surface_only_dataset.csv");
   //plotter->setFile(outFileName);
-  //plotter->setFile(surfAnalyser->GetOutFileName());
   
   //plotter->setPlotParameters("");
   

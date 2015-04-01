@@ -9,11 +9,9 @@
 
 using namespace std;
 
-AnalysisTool::AnalysisTool(){
-}
+AnalysisTool::AnalysisTool(){}
 
-AnalysisTool::~AnalysisTool() {
-}
+AnalysisTool::~AnalysisTool() {}
 
 void AnalysisTool::PrintTool() {
   cout << "No analysis tool currently selected" << endl;

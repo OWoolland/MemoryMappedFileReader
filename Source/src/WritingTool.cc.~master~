@@ -22,6 +22,8 @@ StackingTool* stackToolWriter = NULL;
 /**************************************************
 Flow of class:
   - Accept lines from other classes to write to output file
+
+ SHOULD BECOME A STACK
 **************************************************/
 
 WritingTool::WritingTool(const char * outFileName,

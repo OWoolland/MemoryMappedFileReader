@@ -18,11 +18,9 @@ Flow of class:
   - Process data and format for outputting
 **************************************************/
 
-AllPass::AllPass() : AnalysisTool() {
-}
+AllPass::AllPass() : AnalysisTool() {}
 
-AllPass::~AllPass() {
-}
+AllPass::~AllPass() {}
 
 void AllPass::PrintTool() {
   cout << "The analysis tool in use is AllPass" << endl;
@@ -35,9 +33,9 @@ bool AllPass::getInterest() {
 bool AllPass::getInterest(int particle, int surface) {}
 
 bool AllPass::getInterest(int particle,
-				int surface,
-				int creationProcess,
-				int flagPhotoElectron) {}
+			  int surface,
+			  int creationProcess,
+			  int flagPhotoElectron) {}
 
 string AllPass::processData() {}
 

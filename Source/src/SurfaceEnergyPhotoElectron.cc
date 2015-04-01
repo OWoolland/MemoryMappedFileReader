@@ -18,11 +18,9 @@ Flow of class:
   - Process data and format for outputting
 **************************************************/
 
-SurfaceEnergyPhotoElectron::SurfaceEnergyPhotoElectron() : AnalysisTool() {
-}
+SurfaceEnergyPhotoElectron::SurfaceEnergyPhotoElectron() : AnalysisTool() {}
 
-SurfaceEnergyPhotoElectron::~SurfaceEnergyPhotoElectron() {
-}
+SurfaceEnergyPhotoElectron::~SurfaceEnergyPhotoElectron() {}
 
 void SurfaceEnergyPhotoElectron::PrintTool() {
   cout << "The analysis tool in use is SurfaceEnergyPhotoElectron" << endl;

@@ -16,11 +16,9 @@ Flow of class:
   - Pass lines to awaiting worker threads
 **************************************************/
 
-StackingTool::StackingTool(){
-}
+StackingTool::StackingTool() {}
 
-StackingTool::~StackingTool() {
-}
+StackingTool::~StackingTool() {}
 
 void StackingTool::stackLine(char* line) {
   pthread_mutex_lock(&stack_mutex);
