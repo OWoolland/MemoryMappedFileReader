@@ -20,6 +20,9 @@ class AnalysisTool {
 			     int sturface,
 			     int creationProcess,
 			     int flagPhotoElectron);
+    virtual bool getInterest(int particle,
+			     int sturface,
+			     int volume);
   
     virtual string processData();
     virtual string processData(int id, float energy);

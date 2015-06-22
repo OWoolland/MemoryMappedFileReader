@@ -38,10 +38,12 @@ bool SurfaceEnergy::getInterest(int particle,
 				int creationProcess,
 				int flagPhotoElectron) {}
 
+bool SurfaceEnergy::getInterest(int particle, int surface, int volume) {}
+
 string SurfaceEnergy::processData() {}
 
 string SurfaceEnergy::processData(int id, float energy) {
   stringstream outLine;
-  outLine << id << "," << energy;
+  outLine << energy;
   return outLine.str();
 }

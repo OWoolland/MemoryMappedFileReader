@@ -33,16 +33,20 @@ bool SurfaceEnergyPhotoElectron::getInterest(int particle, int surface) {}
 bool SurfaceEnergyPhotoElectron::getInterest(int particle,
 					     int surface,
 					     int creationProcess,
-					     int flagPhotoElectron) {
+					     int flagAugerElectron) {
   if (particle == 1 && surface == 1 &&
-      creationProcess == 8 && flagPhotoElectron == 1) return true;
+      creationProcess == 8 && flagAugerElectron == 0) return true;
   else return false;				       
 }
+
+bool SurfaceEnergyPhotoElectron::getInterest(int particle,
+					     int surface,
+					     int volume) {}
 
 string SurfaceEnergyPhotoElectron::processData() {}
 
 string SurfaceEnergyPhotoElectron::processData(int id, float energy) {
   stringstream outLine;
-  outLine << id << "," << energy;
+  outLine << energy;
   return outLine.str();
 }

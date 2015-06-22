@@ -56,7 +56,7 @@ void *WorkerManager::threadAction(void *threadid) {
   float x,y,z,edep,energy,particle_time = 0.;
   int particle,process,creation_process = 0;
   float momentum_x,momentum_y,momentum_z = 0.;
-  int volume,surface,photoElectron = 0;
+  int volume,surface,augerElectron = 0;
 
   while (true) {
     if (stackingTool->getStackSize()==0) continue;
@@ -90,7 +90,7 @@ void *WorkerManager::threadAction(void *threadid) {
 	  case 13: value_ss >> momentum_z; break;
 	  case 14: value_ss >> volume; break;
 	  case 15: value_ss >> surface; break;
-	  case 16: value_ss >> photoElectron; break;
+	  case 16: value_ss >> augerElectron; break;
 	  case 17: break;
 	  default: 
 	    cout << "Error on line " << line <<endl;
@@ -98,7 +98,7 @@ void *WorkerManager::threadAction(void *threadid) {
 	  }
 	i++;
       }
-    if(analyser->getInterest(particle, surface, creation_process, photoElectron)) {
+    if(analyser->getInterest(particle, surface, creation_process, augerElectron)) {
       string toWrite = analyser->processData(id,energy); 
       if(writingTool->getWriteStackSize()>50000)
 	while(writingTool->getWriteStackSize()>2500)

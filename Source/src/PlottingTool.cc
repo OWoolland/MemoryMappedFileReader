@@ -57,7 +57,7 @@ void PlottingTool::plotXY(int xCol, int yCol) {
 
   gnuplot_script.close();
 
-  system("gnuplot -p gnuplot_tmp");
+  system("gnuplot -persist gnuplot_tmp");
 }
 
 void PlottingTool::plotHist(int nBins, double minValue, double maxValue, int col) {
@@ -93,5 +93,5 @@ void PlottingTool::plotHist(int nBins, double minValue, double maxValue, int col
 
   gnuplot_script.close();
 
-  system("gnuplot -p gnuplot_tmp");
+  system("gnuplot -persist gnuplot_tmp");
 }

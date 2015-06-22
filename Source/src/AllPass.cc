@@ -37,6 +37,8 @@ bool AllPass::getInterest(int particle,
 			  int creationProcess,
 			  int flagPhotoElectron) {}
 
+bool AllPass::getInterest(int particle, int surface, int volume) {}
+
 string AllPass::processData() {}
 
 string AllPass::processData(int id, float energy) {

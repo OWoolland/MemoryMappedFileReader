@@ -9,6 +9,7 @@
 #include "SurfaceEnergy.hh"
 #include "SurfaceEnergyPhotoElectron.hh"
 #include "SurfaceEnergyAugerElectron.hh"
+#include "SurfaceEnergyVolume.hh"
 
 #include <iostream>  // printing
 #include <fstream>   // reading file
@@ -53,6 +54,7 @@ int main(int argc, char* argv[])
   SurfaceEnergy* surfaceEnergy = new SurfaceEnergy();
   SurfaceEnergyPhotoElectron* surfaceEnergyPhotoElectron = new SurfaceEnergyPhotoElectron();
   SurfaceEnergyAugerElectron* surfaceEnergyAugerElectron = new SurfaceEnergyAugerElectron();
+  SurfaceEnergyVolume* surfaceEnergyVolume = new SurfaceEnergyVolume();
 
   // Select analysis tool based on command line switch
   
@@ -66,6 +68,8 @@ int main(int argc, char* argv[])
 	analysisTool = surfaceEnergyPhotoElectron;
       } else if (strcmp(optarg, "SurfaceEnergyAugerElectron")==0) {
 	analysisTool = surfaceEnergyAugerElectron;
+      }	else if (strcmp(optarg, "SurfaceEnergyVolume")==0) {
+	analysisTool = surfaceEnergyVolume;
       } else if (strcmp(optarg, "AllPass")==0) {
 	analysisTool = allPass;
       } else {
@@ -112,32 +116,32 @@ int main(int argc, char* argv[])
 	(stackTool->getStackSize()>0)||
 	(writeTool->getWriteStackSize()>0)
 	) {
-    cout << "In: " << stackTool->getStackSize()
-	 << " Out: " << writeTool->getWriteStackSize()
-	 << endl;
+    //cout << "In: " << stackTool->getStackSize()
+    //	 << " Out: " << writeTool->getWriteStackSize()
+    //	 << endl;
     memMapReader->printCurrentProgress();
     usleep(60000000);
   }
 
   // Call plotting tool
 
-  //PlottingTool* plotter = new PlottingTool();
-  //  plotter->setTitle("10^7 Photons");
+  PlottingTool* plotter = new PlottingTool();
+  // plotter->setTitle("10^7 Photons");
   //plotter->setXLabel("Energy (eV)");
   //plotter->setYLabel("Count");
 
-  //plotter->setFile(outFileName);
+  plotter->setFile(outFileName);
   
-  //plotter->setPlotParameters("");
+  plotter->setPlotParameters("");
   
-  //plotter->plotXY(0,  // xCol
-  //		  6); // yCol
+  //plotter->plotXY(1,  // xCol
+  //		  2); // yCol
 
-  //plotter->setPlotParameters("smooth freq with boxes notitle");
+  plotter->setPlotParameters("smooth freq with boxes notitle");
 
-  //plotter->plotHist(1254, // nBins
-    //1254,     // minValue
-	//0, // maxValue
-	    //1);    // file column
+  plotter->plotHist(1458, // nBins
+  		    1458,     // minValue
+  		    0, // maxValue
+		    1);    // file column
 }
 

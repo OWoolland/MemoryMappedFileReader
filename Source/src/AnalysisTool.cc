@@ -32,6 +32,10 @@ bool AnalysisTool::getInterest(int particle,
   return false;
 }
 
+bool AnalysisTool::getInterest(int particle, int surface, int volume) {
+  return false;
+}
+
 string AnalysisTool::processData() {
   stringstream outLine;
   outLine << "No analysis tool currently selected" << endl;
