@@ -25,10 +25,14 @@ class SurfaceEnergy : public AnalysisTool {
     virtual bool getInterest(int particle,
   			     int sturface,
 			     int volume);
+    virtual bool getInterest(int particle,
+			     int surface,
+			     double energy);
   
     virtual string processData(); 
     virtual string processData(int id, float energy);
-
+    virtual string processData(int creation_process);
+  
   private:
 };
 

@@ -43,6 +43,10 @@ bool SurfaceEnergyAugerElectron::getInterest(int particle,
 					      int surface,
 					      int volume) {}
 
+bool SurfaceEnergyAugerElectron::getInterest(int particle,
+					     int surface,
+					     double energy) {}
+
 string SurfaceEnergyAugerElectron::processData() {}
 
 string SurfaceEnergyAugerElectron::processData(int id, float energy) {
@@ -50,3 +54,5 @@ string SurfaceEnergyAugerElectron::processData(int id, float energy) {
   outLine << energy;
   return outLine.str();
 }
+
+string SurfaceEnergyAugerElectron::processData(int creation_process) {}

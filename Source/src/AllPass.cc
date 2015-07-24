@@ -39,6 +39,10 @@ bool AllPass::getInterest(int particle,
 
 bool AllPass::getInterest(int particle, int surface, int volume) {}
 
+bool AllPass::getInterest(int particle,
+			  int surface,
+			  double energy) {}
+
 string AllPass::processData() {}
 
 string AllPass::processData(int id, float energy) {
@@ -46,3 +50,5 @@ string AllPass::processData(int id, float energy) {
   outLine << id << "," << energy;
   return outLine.str();
 }
+
+string AllPass::processData(int creation_process) {}

@@ -10,6 +10,7 @@
 #include "SurfaceEnergyPhotoElectron.hh"
 #include "SurfaceEnergyAugerElectron.hh"
 #include "SurfaceEnergyVolume.hh"
+#include "SurfaceEnergyEnergyRange.hh"
 
 #include <iostream>  // printing
 #include <fstream>   // reading file
@@ -55,7 +56,8 @@ int main(int argc, char* argv[])
   SurfaceEnergyPhotoElectron* surfaceEnergyPhotoElectron = new SurfaceEnergyPhotoElectron();
   SurfaceEnergyAugerElectron* surfaceEnergyAugerElectron = new SurfaceEnergyAugerElectron();
   SurfaceEnergyVolume* surfaceEnergyVolume = new SurfaceEnergyVolume();
-
+  SurfaceEnergyEnergyRange* surfaceEnergyEnergyRange = new SurfaceEnergyEnergyRange();
+ 
   // Select analysis tool based on command line switch
   
   int opt;
@@ -70,6 +72,8 @@ int main(int argc, char* argv[])
 	analysisTool = surfaceEnergyAugerElectron;
       }	else if (strcmp(optarg, "SurfaceEnergyVolume")==0) {
 	analysisTool = surfaceEnergyVolume;
+      } else if (strcmp(optarg, "SurfaceEnergyEnergyRange")==0) {
+	analysisTool = surfaceEnergyEnergyRange;
       } else if (strcmp(optarg, "AllPass")==0) {
 	analysisTool = allPass;
       } else {
@@ -125,23 +129,23 @@ int main(int argc, char* argv[])
 
   // Call plotting tool
 
-  PlottingTool* plotter = new PlottingTool();
+  //PlottingTool* plotter = new PlottingTool();
   // plotter->setTitle("10^7 Photons");
   //plotter->setXLabel("Energy (eV)");
   //plotter->setYLabel("Count");
 
-  plotter->setFile(outFileName);
+  //plotter->setFile(outFileName);
   
-  plotter->setPlotParameters("");
+  //plotter->setPlotParameters("");
   
   //plotter->plotXY(1,  // xCol
   //		  2); // yCol
 
-  plotter->setPlotParameters("smooth freq with boxes notitle");
+  //plotter->setPlotParameters("smooth freq with boxes notitle");
 
-  plotter->plotHist(1458, // nBins
-  		    1458,     // minValue
-  		    0, // maxValue
-		    1);    // file column
+  //plotter->plotHist(1458, // nBins
+  //		    1458,     // minValue
+  //		    0, // maxValue
+  //		    1);    // file column
 }
 

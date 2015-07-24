@@ -40,6 +40,10 @@ bool SurfaceEnergy::getInterest(int particle,
 
 bool SurfaceEnergy::getInterest(int particle, int surface, int volume) {}
 
+bool SurfaceEnergy::getInterest(int particle,
+				int surface,
+				double energy) {}
+
 string SurfaceEnergy::processData() {}
 
 string SurfaceEnergy::processData(int id, float energy) {
@@ -47,3 +51,5 @@ string SurfaceEnergy::processData(int id, float energy) {
   outLine << energy;
   return outLine.str();
 }
+
+string SurfaceEnergy::processData(int creation_process) {}

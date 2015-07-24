@@ -1,5 +1,5 @@
-#ifndef AllPass_h
-#define AllPass_h 1
+#ifndef SurfaceEnergyVolume_h
+#define SurfaceEnergyVolume_h 1
 
 #include "AnalysisTool.hh"
 #include "StackingTool.hh"
@@ -8,16 +8,16 @@
 
 using namespace std;
 
-class AllPass : public AnalysisTool {
+class SurfaceEnergyVolume : public AnalysisTool {
   public:
-    AllPass();
-    ~AllPass();
+    SurfaceEnergyVolume();
+    ~SurfaceEnergyVolume();
 
     virtual void PrintTool();
 
   //using AnalysisTool::getInterest;
     virtual bool getInterest();
-    virtual bool getInterest(int particle, int sturface);
+    virtual bool getInterest(int particle, int surface);
     virtual bool getInterest(int particle,
 			     int sturface,
 			     int creationProcess,

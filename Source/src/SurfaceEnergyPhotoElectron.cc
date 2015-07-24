@@ -43,6 +43,10 @@ bool SurfaceEnergyPhotoElectron::getInterest(int particle,
 					     int surface,
 					     int volume) {}
 
+bool SurfaceEnergyPhotoElectron::getInterest(int particle,
+					     int surface,
+					     double energy) {}
+
 string SurfaceEnergyPhotoElectron::processData() {}
 
 string SurfaceEnergyPhotoElectron::processData(int id, float energy) {
@@ -50,3 +54,5 @@ string SurfaceEnergyPhotoElectron::processData(int id, float energy) {
   outLine << energy;
   return outLine.str();
 }
+
+string SurfaceEnergyPhotoElectron::processData(int creation_process) {}

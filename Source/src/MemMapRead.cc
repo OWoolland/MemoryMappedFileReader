@@ -64,6 +64,7 @@ const char* MemMapRead::mapFile(const char* fname, size_t& length) {
     }
   posix_fadvise(fileDescriptor, 0, 0, POSIX_FADV_SEQUENTIAL);
   posix_fadvise(fileDescriptor, 0, 0, POSIX_FADV_WILLNEED); 
+  posix_fadvise(fileDescriptor, 0, 0, POSIX_FADV_NOREUSE);
   
   // obtain file size
   struct stat sb;
@@ -111,6 +112,7 @@ void *MemMapRead::readFile(void *threadid) {
     fileMap=nextEnd; 
   }
   finished = true;
+  abort();
 }
 
 void MemMapRead::printCurrentProgress() { 

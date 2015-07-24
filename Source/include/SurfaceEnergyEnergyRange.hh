@@ -1,5 +1,5 @@
-#ifndef AllPass_h
-#define AllPass_h 1
+#ifndef SurfaceEnergyEnergyRange_h
+#define SurfaceEnergyEnergyRange_h 1
 
 #include "AnalysisTool.hh"
 #include "StackingTool.hh"
@@ -8,10 +8,10 @@
 
 using namespace std;
 
-class AllPass : public AnalysisTool {
+class SurfaceEnergyEnergyRange : public AnalysisTool {
   public:
-    AllPass();
-    ~AllPass();
+    SurfaceEnergyEnergyRange();
+    ~SurfaceEnergyEnergyRange();
 
     virtual void PrintTool();
 
@@ -23,7 +23,7 @@ class AllPass : public AnalysisTool {
 			     int creationProcess,
 			     int flagPhotoElectron);
     virtual bool getInterest(int particle,
-			     int sturface,
+  			     int sturface,
 			     int volume);
     virtual bool getInterest(int particle,
 			     int surface,
